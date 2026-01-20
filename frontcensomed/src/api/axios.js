@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || "https://repopruebatec-756570331238.us-central1.run.app/api",
-  headers: { Accept: "application/json" },
+  baseURL: process.env.REACT_APP_API_URL,
+  headers: { Accept: "application/json" }, // no Content-Type global
 });
 
 export default api;
