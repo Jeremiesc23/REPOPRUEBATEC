@@ -10,7 +10,7 @@ steps:
         '-t',
         'gcr.io/$PROJECT_ID/frontend:$SHORT_SHA',
         '--build-arg',
-        'REACT_APP_API_URL=https://repopruebatec-756570331238.us-central1.run.app/api/',
+        'REACT_APP_API_URL=https://repopruebatec-756570331238.us-central1.run.app/api',
         '.'
       ]
 
