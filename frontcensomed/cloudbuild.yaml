@@ -12,3 +12,6 @@ steps:
 
 images:
   - 'gcr.io/$PROJECT_ID/frontconsomed'
+
+options:
+  logging: CLOUD_LOGGING_ONLY
