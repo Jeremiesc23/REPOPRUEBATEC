@@ -1,12 +1,28 @@
-# Usa la imagen base de Node.js para construir la aplicación
-FROM node:16 as build
-
-# Establece el directorio de trabajo
+# ---------- Build ----------
+FROM node:20-alpine AS builder
 WORKDIR /app
 
-# Copia los archivos de dependencias y luego instala
 COPY package*.json ./
-RUN npm install
+RUN npm ci
 
-# Copia todo el código fuente
 COPY . .
+
+# Inyecta variables CRA en build time
+ARG REACT_APP_API_URL
+ENV REACT_APP_API_URL=$REACT_APP_API_URL
+
+RUN npm run build
+
+
+# ---------- Run ----------
+FROM node:20-alpine
+WORKDIR /app
+
+RUN npm i -g serve
+COPY --from=builder /app/build ./build
+
+ENV NODE_ENV=production
+ENV PORT=8080
+EXPOSE 8080
+
+CMD ["sh", "-c", "serve -s build -l $PORT"]
