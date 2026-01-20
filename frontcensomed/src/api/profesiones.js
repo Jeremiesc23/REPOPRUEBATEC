@@ -1,56 +1,25 @@
-// src/api/profesiones.js
-import api from './axios';
+import api from "./axios";
 
-// Obtener todas las profesiones
 export const getProfesiones = async () => {
-  try {
-    const response = await api.get('/profesiones');
-    return response.data;
-  } catch (error) {
-    console.error("Error al obtener las profesiones:", error);
-    throw error;
-  }
+  const { data } = await api.get("profesiones");
+  return data;
 };
 
-// Crear una nueva profesión
 export const createProfesion = async (nombreProfesion) => {
-  try {
-    const response = await api.post('/profesiones', { nombreProfesion });
-    return response.data;
-  } catch (error) {
-    console.error("Error al crear la profesión:", error);
-    throw error;
-  }
+  const { data } = await api.post("profesiones", { nombreProfesion });
+  return data;
 };
 
-// Actualizar una profesión
 export const updateProfesion = async (id, nombreProfesion) => {
-  try {
-    const response = await api.put(`/profesiones/${id}`, { nombreProfesion });
-    return response.data;
-  } catch (error) {
-    console.error("Error al actualizar la profesión:", error);
-    throw error;
-  }
+  const { data } = await api.put(`profesiones/${id}`, { nombreProfesion });
+  return data;
 };
 
-// Obtener profesión por ID
 export const getProfesionById = async (id) => {
-  try {
-    const response = await api.get(`/profesiones/${id}`);
-    return response.data;
-  } catch (error) {
-    console.error("Error al obtener la profesión por ID:", error);
-    throw error;
-  }
+  const { data } = await api.get(`profesiones/${id}`);
+  return data;
 };
 
-// Eliminar una profesiónA
 export const deleteProfesion = async (id) => {
-  try {
-    await api.delete(`/profesiones/${id}`);
-  } catch (error) {
-    console.error("Error al eliminar la profesión:", error);
-    throw error;
-  }
+  await api.delete(`profesiones/${id}`);
 };
