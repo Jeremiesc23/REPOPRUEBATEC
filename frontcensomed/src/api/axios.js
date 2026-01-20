@@ -1,16 +1,14 @@
 import axios from 'axios';
 
-const API_URL =
-  process.env.REACT_APP_API_URL ||
-  'https://repopruebatec-756570331238.us-central1.run.app/api';
+const API_URL = process.env.REACT_APP_API_URL;
 
-console.log('🔥 AXIOS BASE URL EN BUILD:', API_URL);
+if (!API_URL) {
+  throw new Error('REACT_APP_API_URL no está definida (build mal configurado)');
+}
 
-const instance = axios.create({
+const api = axios.create({
   baseURL: API_URL,
-  headers: {
-    'Content-Type': 'application/json',
-  },
+  headers: { 'Content-Type': 'application/json' },
 });
 
-export default instance;
+export default api;

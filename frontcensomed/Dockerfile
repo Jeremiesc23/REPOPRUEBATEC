@@ -1,13 +1,11 @@
-FROM node:16 as build
-
+FROM node:18-alpine as build
 WORKDIR /app
 
-# 👉 Recibe la variable en build
 ARG REACT_APP_API_URL
 ENV REACT_APP_API_URL=$REACT_APP_API_URL
 
 COPY package*.json ./
-RUN npm install
+RUN npm ci
 
 COPY . .
 RUN npm run build
