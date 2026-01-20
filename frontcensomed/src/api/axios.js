@@ -1,6 +1,6 @@
 import axios from "axios";
 
-// Con Nginx proxy, SIEMPRE debe ser /api en producción
+// Siempre mismo dominio del FRONT, Nginx lo proxy a tu back
 const api = axios.create({
   baseURL: "/api",
   headers: { Accept: "application/json" },
