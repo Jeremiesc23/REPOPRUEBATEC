@@ -1,3 +1,4 @@
+# ===== BUILD STAGE =====
 FROM node:20-alpine AS builder
 WORKDIR /app
 
@@ -7,11 +8,10 @@ RUN npm install
 COPY . .
 RUN npm run build
 
-FROM node:20-alpine
-WORKDIR /app
-RUN npm i -g serve
-COPY --from=builder /app/build ./build
+# ===== RUNTIME STAGE =====
+FROM nginx:alpine
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=builder /app/build /usr/share/nginx/html
 
-ENV PORT=8080
 EXPOSE 8080
-CMD ["sh", "-c", "serve -s build -l $PORT"]
+CMD ["nginx", "-g", "daemon off;"]
