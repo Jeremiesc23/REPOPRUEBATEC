@@ -6,10 +6,10 @@ steps:
         '--build-arg',
         'REACT_APP_API_URL=https://repopruebatec-756570331238.us-central1.run.app/api',
         '-t',
-        'gcr.io/$PROJECT_ID/frontconsomed',
+        'gcr.io/$PROJECT_ID/frontcensomed',
         '-f',
-        'frontconsomed/Dockerfile',
-        'frontconsomed'
+        'frontcensomed/Dockerfile',
+        'frontcensomed'
       ]
 
 images:
