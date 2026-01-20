@@ -3,7 +3,7 @@ import axios from 'axios';
 const API_URL = process.env.REACT_APP_API_URL;
 
 if (!API_URL) {
-  throw new Error('REACT_APP_API_URL no está definida (build mal configurado)');
+  console.error("REACT_APP_API_URL no está definida");
 }
 
 const api = axios.create({
