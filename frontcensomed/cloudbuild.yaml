@@ -2,7 +2,6 @@ options:
   logging: CLOUD_LOGGING_ONLY
 
 steps:
-  # 1️⃣ Build del frontend
   - name: 'gcr.io/cloud-builders/docker'
     dir: 'frontcensomed'
     args:
@@ -13,17 +12,6 @@ steps:
         '--build-arg',
         'REACT_APP_API_URL=https://repopruebatec-756570331238.us-central1.run.app/api',
         '.'
-      ]
-
-  # 2️⃣ Deploy automático a Cloud Run
-  - name: 'gcr.io/cloud-builders/gcloud'
-    args:
-      [
-        'run', 'deploy', 'frontend',
-        '--image', 'gcr.io/$PROJECT_ID/frontend:$SHORT_SHA',
-        '--region', 'us-central1',
-        '--platform', 'managed',
-        '--allow-unauthenticated'
       ]
 
 images:
