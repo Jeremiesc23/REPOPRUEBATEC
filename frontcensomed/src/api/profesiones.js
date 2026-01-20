@@ -45,7 +45,7 @@ export const getProfesionById = async (id) => {
   }
 };
 
-// Eliminar una profesión
+// Eliminar una profesiónA
 export const deleteProfesion = async (id) => {
   try {
     await api.delete(`/profesiones/${id}`);
