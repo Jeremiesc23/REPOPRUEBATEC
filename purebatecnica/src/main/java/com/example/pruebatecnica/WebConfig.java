@@ -1,6 +1,5 @@
-package com.example.pruebatecnica;  // Usa el paquete adecuado
+package com.example.pruebatecnica;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -9,11 +8,16 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebConfig implements WebMvcConfigurer {
 
     @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/api/**")  // Cambia según la ruta de tu API
-                .allowedOrigins("http://localhost:3000")  // URL de tu frontend
-                .allowedMethods("GET", "POST", "PUT", "DELETE")  // Métodos permitidos
-                .allowedHeaders("*")  // Permitir todos los headers
-                .allowCredentials(true);  // Permite credenciales si es necesario
+public void addCorsMappings(CorsRegistry registry) {
+  registry.addMapping("/api/**")
+      .allowedOrigins(
+          "http://localhost:3000",
+          "https://frontend-756570331238.us-central1.run.app"
+      )
+      .allowedMethods("GET","POST","PUT","DELETE","OPTIONS")
+      .allowedHeaders("*");
+                // Si NO usas cookies/sesión, déjalo así (mejor).
+                // Si SÍ usas cookies/sesión:
+                // .allowCredentials(true);
     }
 }
