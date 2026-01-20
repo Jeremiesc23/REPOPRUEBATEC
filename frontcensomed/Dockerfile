@@ -1,15 +1,12 @@
-FROM node:18-alpine as build
+# Usa la imagen base de Node.js para construir la aplicación
+FROM node:16 as build
 
+# Establece el directorio de trabajo
 WORKDIR /app
 
-ARG REACT_APP_API_URL
-ENV REACT_APP_API_URL=$REACT_APP_API_URL
-
+# Copia los archivos de dependencias y luego instala
 COPY package*.json ./
 RUN npm install
 
+# Copia todo el código fuente
 COPY . .
-RUN npm run build
-
-FROM nginx:alpine
-COPY --from=build /app/build /usr/share/nginx/html
