@@ -1,0 +1,15 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    dir: 'frontcensomed'
+    args:
+      [
+        'build',
+        '-t',
+        'gcr.io/$PROJECT_ID/frontend:$SHORT_SHA',
+        '--build-arg',
+        'REACT_APP_API_URL=https://repopruebatec-756570331238.us-central1.run.app/api/',
+        '.'
+      ]
+
+images:
+  - 'gcr.io/$PROJECT_ID/frontend:$SHORT_SHA'
